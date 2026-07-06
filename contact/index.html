@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt — Lynx Studio</title>
+  <meta name="description" content="Máte projekt? Napište Lynx Studiu — nezávazná poptávka na branding, web, produkt nebo AI. Ozveme se do 24 hodin.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80' fill='%23ff6041' font-family='Arial' font-weight='bold'>l</text></svg>">
+</head>
+<body class="page-contact">
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">lynx<span class="nav__logo-deg">°</span></a>
+      <nav class="nav__links">
+        <a href="/work/" class="nav__link">PRÁCE<sup>3</sup></a>
+        <a href="/studio/" class="nav__link">STUDIO</a>
+        <a href="/whispers/" class="nav__link">ŠEPOTY<sup>5</sup></a>
+      </nav>
+      <a href="/contact/" class="nav__link nav__link--right" aria-current="page">KONTAKT</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="phero section-dark">
+      <img class="phero__bg" src="/assets/img/u-1512998844734-cd2cca565822.jpg" alt="" aria-hidden="true">
+      <div class="phero__fade"></div>
+      <div class="container">
+        <nav class="crumb" aria-label="Drobečková navigace">
+          <a href="/">Domů</a><span>/</span><span>Kontakt</span>
+        </nav>
+        <span class="phero__eyebrow">MÁTE PROJEKT? POJĎME NA TO</span>
+        <h1 class="phero__title anim-lines">Napište nám.<br>Ozveme se do 24 h.</h1>
+        <p class="phero__lead">Rebrand, nový produkt nebo web, který má konečně fungovat? Napište pár řádků o tom, co chystáte. Žádné korporátní kolečko — přečte si to člověk a ozve se vám osobně.</p>
+        <div class="phero__meta">
+          <span class="pill mono">ODPOVĚĎ DO 24 H</span>
+          <span class="pill mono">NEZÁVAZNĚ</span>
+          <span class="pill mono">PRAHA · REMOTE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section-dark">
+      <div class="container">
+        <div class="contact__grid">
+
+          <!-- FORM -->
+          <div class="card">
+            <form class="cform" onsubmit="event.preventDefault(); this.querySelector('button').textContent='ODESLÁNO ✓';">
+              <div class="cform__row">
+                <div class="field">
+                  <label for="cf-name">Jméno</label>
+                  <input id="cf-name" type="text" name="name" placeholder="Jan Novák" required>
+                </div>
+                <div class="field">
+                  <label for="cf-company">Firma</label>
+                  <input id="cf-company" type="text" name="company" placeholder="Název firmy">
+                </div>
+              </div>
+              <div class="cform__row">
+                <div class="field">
+                  <label for="cf-email">E-mail</label>
+                  <input id="cf-email" type="email" name="email" placeholder="vy@firma.cz" required>
+                </div>
+                <div class="field">
+                  <label for="cf-phone">Telefon</label>
+                  <input id="cf-phone" type="tel" name="phone" placeholder="+420 777 123 456">
+                </div>
+              </div>
+              <div class="field">
+                <label for="cf-type">Typ projektu</label>
+                <select id="cf-type" name="type">
+                  <option value="branding">Branding</option>
+                  <option value="web">Web</option>
+                  <option value="produkt">Produkt</option>
+                  <option value="ai">AI</option>
+                  <option value="jine">Jiné</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Rozpočet</label>
+                <div class="cform__budget">
+                  <label><input type="radio" name="budget" value="do-100">do 100 000 Kč</label>
+                  <label><input type="radio" name="budget" value="100-250">100–250 tis.</label>
+                  <label><input type="radio" name="budget" value="250-plus">250 tis.+</label>
+                  <label><input type="radio" name="budget" value="nevim">Zatím nevím</label>
+                </div>
+              </div>
+              <div class="field">
+                <label for="cf-msg">Zpráva</label>
+                <textarea id="cf-msg" name="message" placeholder="Pár řádků o tom, co chystáte, kam míříte a do kdy to potřebujete." required></textarea>
+              </div>
+              <button type="submit" class="btn btn--accent btn--wide">ODESLAT POPTÁVKU <span class="btn__arrow">→</span></button>
+              <p class="cform__note">Odesláním souhlasíte se zpracováním údajů dle <a href="/legal/privacy-policy.html" class="accent">zásad ochrany soukromí</a>. Vaše data používáme jen k tomu, abychom se vám ozvali — nikam je neposíláme dál.</p>
+            </form>
+          </div>
+
+          <!-- INFO -->
+          <div class="cinfo">
+            <div class="cinfo__card">
+              <p class="cinfo__label">E-mail</p>
+              <a class="cinfo__big accent" href="mailto:hello@lynxstudio.cz">hello@lynxstudio.cz</a>
+            </div>
+            <div class="cinfo__card">
+              <p class="cinfo__label">Telefon</p>
+              <a class="cinfo__big accent" href="tel:+420777555165">+420 777 555 165</a>
+            </div>
+            <div class="cinfo__card cinfo__card--dark">
+              <p class="cinfo__label">Váš průvodce</p>
+              <p style="color:#c9cccf; font-size:15px; line-height:1.6;">Nejdřív si dáme nezávazný 30minutový intro call. Projdeme si, co potřebujete, a řekneme rovnou, jestli jsme na to ti praví.</p>
+              <div class="cinfo__person">
+                <img src="/assets/img/u-1580489944761-15a19d654956.jpg" alt="Magda Vinklová">
+                <div><b>Magda Vinklová</b><span>Project Operations Manager</span></div>
+              </div>
+            </div>
+            <div class="cinfo__card">
+              <p class="cinfo__label">Sledujte nás</p>
+              <div class="cinfo__socials">
+                <a href="https://x.com" target="_blank" rel="noopener">X</a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener">Li</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener">IG</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener">FB</a>
+                <a href="https://whatsapp.com" target="_blank" rel="noopener">WA</a>
+              </div>
+            </div>
+            <div class="cinfo__card cinfo__card--dark">
+              <p class="cinfo__label">Kde nás najdete</p>
+              <address class="cinfo__addr">
+                <b>Lynx Studio</b> s.r.o.<br>
+                Nádražní 32<br>
+                150 00 Praha 5
+              </address>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="section-light">
+      <div class="container" style="padding-block: 100px;">
+        <span class="phero__eyebrow" style="color:#6c7075;">NEŽ NAPÍŠETE</span>
+        <h2 class="section-heading anim-lines" style="margin: 18px 0 40px; color: var(--c-text-gray);">Jak to u nás<br>začíná</h2>
+        <div style="max-width: 760px;">
+          <details class="qa" open>
+            <summary>Co se stane po odeslání poptávky?<span class="qa__plus"></span></summary>
+            <p>Do 24 hodin se vám ozveme e-mailem s prvními otázkami a návrhem termínu na nezávazný intro call. Žádný automat, píše skutečný člověk z týmu.</p>
+          </details>
+          <details class="qa">
+            <summary>Jak vypadá první schůzka?<span class="qa__plus"></span></summary>
+            <p>Třicet minut online. Projdeme si vaše cíle, rozpočet i časové limity a řekneme rovnou, jestli vám dokážeme pomoct. Pokud to nesedí, poradíme, kam se obrátit.</p>
+          </details>
+          <details class="qa">
+            <summary>Kdy dostanu nabídku a cenu?<span class="qa__plus"></span></summary>
+            <p>Do pár dní po callu pošleme jasnou nabídku s rozsahem, harmonogramem a cenou — bez skrytých položek. Teprve když ji odkývnete, pouštíme se do práce.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer section-light">
+    <div class="container footer__top">
+      <div class="footer__news">
+        <h3>Zůstaňte<br>ve smyčce. <span class="footer__spiral" aria-hidden="true">✺</span></h3>
+        <p>Novinky a insighty přímo do vaší schránky. <span class="accent">*</span></p>
+        <form class="footer__form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='DĚKUJEME ✓';">
+          <input type="email" placeholder="Zadejte svůj e-mail" required>
+          <button type="submit" class="btn btn--accent btn--wide">ODEBÍRAT <span class="btn__arrow">→</span></button>
+        </form>
+        <p class="footer__terms">Odesláním souhlasíte s našimi <a href="/legal/terms-of-service.html" class="accent">obchodními podmínkami.</a></p>
+        <p class="footer__nospam"><span class="accent">*</span> Žádný spam, jen poctivé novinky.</p>
+      </div>
+      <div class="footer__col mono">
+        <p class="footer__col-head">NAVIGACE</p>
+        <a href="/">DOMŮ</a>
+        <a href="/work/">PRÁCE</a>
+        <a href="/studio/">STUDIO</a>
+        <a href="/whispers/">ŠEPOTY</a>
+      </div>
+      <div class="footer__col mono">
+        <p class="footer__col-head">ODKAZY</p>
+        <a href="/legal/terms-of-service.html">OBCHODNÍ PODMÍNKY</a>
+        <a href="/legal/privacy-policy.html">OCHRANA SOUKROMÍ</a>
+        <a href="/legal/disclaimer.html">DISCLAIMER</a>
+        <a href="/404.html">404</a>
+      </div>
+    </div>
+    <div class="container footer__socials-row">
+      <p>Sledujte nás na sítích</p>
+      <div class="footer__socials mono">
+        <a href="https://x.com" target="_blank" rel="noopener">X</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">Li</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">IG</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener">FB</a>
+        <a href="https://whatsapp.com" target="_blank" rel="noopener">WA</a>
+      </div>
+    </div>
+    <div class="container footer__contact">
+      <div class="footer__col mono">
+        <p class="footer__col-head">OFFLINE</p>
+        <p class="footer__addr"><b>Lynx Studio</b> s.r.o.<br>Nádražní 32<br>150 00 Praha 5</p>
+      </div>
+      <div class="footer__col mono">
+        <p class="footer__col-head">ONLINE</p>
+        <a href="mailto:hello@lynxstudio.cz" class="accent footer__mail">hello@lynxstudio.cz</a>
+      </div>
+    </div>
+    <div class="container footer__brand">
+      <div>
+        <p class="footer__claim">Digitální zážitky, které spojují,<br>rostou a fungují.</p>
+        <div class="footer__wordmark" aria-hidden="true"><span class="accent">Lynx</span><span class="footer__slash">\</span><span>Studio</span></div>
+        <p class="footer__desc">Kreativní agentura pro design, strategii, marketing<br>a škálovatelné prémiové weby.</p>
+        <p class="footer__copy">© 2026 Lynx Studio — Všechna práva vyhrazena.</p>
+      </div>
+      <div class="footer__phone-col">
+        <p class="footer__col-head mono">TELEFON</p>
+        <a href="tel:+420777555165" class="footer__phone">+420 777 555 165</a>
+      </div>
+      <button class="footer__top-btn" aria-label="Zpět nahoru" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
