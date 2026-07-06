@@ -744,7 +744,7 @@ sup { font-size: .55em; margin-left: 2px; color: var(--c-text-mut); }
 /* ==========================================================================
    SUBPAGES — sdílené prvky (work, studio, whispers, contact, legal, 404)
    ========================================================================== */
-.nav__link[aria-current="page"] { color: var(--c-accent); }
+.nav__link[aria-current="page"] { color: var(--c-accent); --u: 1; }
 
 /* ------- page hero ------- */
 .phero { position: relative; overflow: hidden; padding: calc(var(--nav-h) + 96px) 0 76px; }
@@ -1063,3 +1063,126 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select { cursor
 
 /* Bez výjimek: kurzor, progress bar i parallax běží i na dotykových
    zařízeních a při prefers-reduced-motion (na výslovné přání klienta). */
+
+/* ==========================================================================
+   MOTION LAYER v2 — A + B (page transitions, hover, accordion, dividers…)
+   ========================================================================== */
+
+/* ---- A1: page transitions + intro ---- */
+/* okamžité zakrytí při vstupu (bez fliknutí) — bezpečnostní timeout v head-guardu */
+html.is-entering::before {
+  content: ""; position: fixed; inset: 0; z-index: 620; background: var(--c-dark);
+  pointer-events: none;
+}
+.pagefx {
+  position: fixed; inset: 0; z-index: 640; background: var(--c-dark);
+  transform: scaleY(0); transform-origin: bottom; pointer-events: none;
+  display: grid; place-items: center; will-change: transform;
+}
+.pagefx__mark {
+  font-size: clamp(38px, 6vw, 84px); font-weight: 700; letter-spacing: -.045em; line-height: 1;
+  color: var(--c-light); opacity: 0;
+}
+.pagefx__mark .slash { font-weight: 300; color: #fff; }
+.pagefx__mark .a { color: var(--c-accent); }
+.pagefx__bar { width: min(230px, 56vw); height: 2px; background: rgba(255,255,255,.18); margin: 26px auto 0; overflow: hidden; }
+.pagefx__bar i { display: block; height: 100%; width: 0; background: var(--c-accent); }
+.pagefx__pct { font-family: var(--f-mono); font-size: 11px; letter-spacing: .1em; color: #9aa0a4; margin-top: 12px; }
+
+/* ---- A3/B1: cursor label ---- */
+.cursor-label {
+  position: fixed; top: 0; left: 0; z-index: 320; pointer-events: none;
+  transform: translate(-50%, -50%); transform-origin: center;
+  background: var(--c-accent); color: #fff; font-family: var(--f-mono);
+  font-size: 10px; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap;
+  padding: 9px 14px; border-radius: 22px; opacity: 0; scale: .5;
+  transition: opacity .28s cubic-bezier(.22,1,.36,1), scale .28s cubic-bezier(.22,1,.36,1);
+}
+.cursor-label.is-on { opacity: 1; scale: 1; }
+.has-cursor .cursor-ring.is-label { opacity: 0 !important; }
+
+/* ---- A2: scroll-velocity skew se řídí z JS (transform), zde jen hint ---- */
+.skewable { will-change: transform; }
+
+/* ---- A4: progresní linka u procesních karet ---- */
+.proc-progress { position: relative; }
+.proc-progress__line {
+  position: absolute; left: 50%; top: 0; width: 2px; height: 100%;
+  background: rgba(255,255,255,.1); transform: translateX(-50%); overflow: hidden;
+}
+.proc-progress__line i { position: absolute; inset: 0 0 auto 0; height: 0; background: var(--c-accent); }
+@media (max-width: 1100px) { .proc-progress__line { display: none; } }
+
+/* ---- A5: scrub reveal textu (slova ztmavují podle scrollu) ---- */
+.scrub-word { transition: none; }
+.section-dark .scrub-word { color: #3b3f44; }
+.section-light .scrub-word { color: #c4c7cb; }
+
+/* ---- B1: worktile / project directional hover ---- */
+.worktile, .blog-card, .process__case-card { --rx: 0deg; --ry: 0deg; }
+.worktile::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0;
+  background: linear-gradient(200deg, rgba(255,96,65,.18), transparent 60%);
+  transition: opacity .5s; pointer-events: none;
+}
+.worktile:hover::before { opacity: 1; }
+.worktile__go { transition: transform .45s cubic-bezier(.22,1,.36,1), background .3s; }
+.worktile:hover .worktile__title { color: #fff; }
+
+/* ---- B2: team grayscale -> barva + náklon ---- */
+.member { transform-style: preserve-3d; }
+.member img { transition: filter .6s ease, transform .6s cubic-bezier(.22,1,.36,1); }
+.member:hover img { filter: grayscale(0) contrast(1.02); }
+
+/* ---- B3: plynulý accordion ---- */
+.qa > p, .plan__body { will-change: height; }
+.qa.js-acc > p { overflow: hidden; }
+
+/* ---- B4: bar fill pod procentními statistikami ---- */
+.statbar { display: block; height: 3px; margin-top: 14px; border-radius: 2px;
+  background: rgba(140,140,140,.25); overflow: hidden; }
+.section-dark .statbar { background: rgba(255,255,255,.16); }
+.statbar > i { display: block; height: 100%; width: 0; background: var(--c-accent); border-radius: 2px; }
+
+/* ---- B5: nav underline draw + aktivní sekce ---- */
+.nav__link { --u: 0; }
+.nav__link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1.5px;
+  background: var(--c-accent); transform: scaleX(var(--u)); transform-origin: left; transition: transform .35s cubic-bezier(.22,1,.36,1);
+}
+.nav__link:hover, .nav__link.is-active { --u: 1; }
+.nav__link.is-active { color: var(--c-accent); }
+
+/* ---- B6: buttons fill-sweep + arrow loop + input focus ---- */
+.btn { position: relative; overflow: hidden; isolation: isolate; }
+.btn::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; transform: scaleX(0); transform-origin: left;
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
+}
+.btn--accent::before { background: #d8452a; }
+.btn--white::before { background: var(--c-accent); }
+.btn--white:hover { color: #fff; }
+.btn:hover::before { transform: scaleX(1); }
+@keyframes arrow-loop { 0% { transform: translateX(0); } 45% { transform: translateX(7px); opacity: 0; }
+  46% { transform: translateX(-7px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+.btn:hover .btn__arrow { animation: arrow-loop .55s cubic-bezier(.22,1,.36,1); }
+.field { position: relative; }
+.field input, .field textarea { position: relative; }
+.field::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+  background: var(--c-accent); transform: scaleX(0); transform-origin: left; transition: transform .4s cubic-bezier(.22,1,.36,1);
+}
+.field:focus-within::after { transform: scaleX(1); }
+
+/* ---- B7: legal TOC aktivní kapitola ---- */
+.legal__toc a.is-active { color: var(--c-accent); border-color: var(--c-accent); }
+.prose blockquote { will-change: opacity, transform; }
+
+/* ---- B8: dividers draw ---- */
+.ruler, .projects__more-line { transform-origin: left center; }
+.barcode { will-change: background-position; }
+
+/* ---- B9: blur-up načítání obrázků ---- */
+.img-blur { filter: blur(16px); transform: scale(1.04); opacity: .001; transition: none; }
+.img-blur.is-loaded { filter: blur(0); transform: none; opacity: 1;
+  transition: filter .8s ease, transform .8s cubic-bezier(.22,1,.36,1), opacity .6s ease; }
