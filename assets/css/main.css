@@ -987,3 +987,89 @@ sup { font-size: .55em; margin-left: 2px; color: var(--c-text-mut); }
   .cform__row { grid-template-columns: 1fr; }
   .studio__figures { grid-template-columns: 1fr 1fr; }
 }
+
+/* ==========================================================================
+   MOTION LAYER — scroll efekty, reveal, kurzor, carousel
+   (řízeno z main.js; vše degraduje na plně viditelný obsah bez JS)
+   ========================================================================== */
+
+/* ---- scroll progress ---- */
+.scroll-progress {
+  position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 200;
+  transform: scaleX(0); transform-origin: 0 50%; pointer-events: none;
+  background: linear-gradient(90deg, var(--c-accent), #ff9d6b);
+}
+
+/* ---- nav pohyb ---- */
+.nav { transition: transform .5s cubic-bezier(.22,1,.36,1), background .4s ease, box-shadow .4s ease; }
+.nav--scrolled { background: rgba(3,4,6,.94); box-shadow: 0 1px 0 rgba(255,255,255,.07); }
+
+/* ---- text reveal masky ---- */
+.line-mask { display: block; overflow: hidden; }
+.line-in { display: block; will-change: transform; }
+.word-mask { display: inline-block; overflow: hidden; vertical-align: top; }
+.word-in { display: inline-block; will-change: transform; }
+
+/* ---- custom cursor (jen desktop, additivní k nativnímu) ---- */
+.cursor-dot, .cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 300; pointer-events: none;
+  border-radius: 50%; mix-blend-mode: difference; will-change: transform;
+}
+.cursor-dot { width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; background: #fff; }
+.cursor-ring {
+  width: 40px; height: 40px; margin: -20px 0 0 -20px;
+  border: 1px solid rgba(255,255,255,.75);
+  transition: width .28s cubic-bezier(.22,1,.36,1), height .28s cubic-bezier(.22,1,.36,1),
+              margin .28s cubic-bezier(.22,1,.36,1), background .28s, border-color .28s, opacity .3s;
+}
+.cursor-ring.is-hover { width: 62px; height: 62px; margin: -31px 0 0 -31px; background: rgba(255,255,255,.15); border-color: transparent; }
+.cursor-hidden { opacity: 0; }
+html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor summary,
+html.has-cursor .btn, html.has-cursor [role="button"] { cursor: none; }
+html.has-cursor input, html.has-cursor textarea, html.has-cursor select { cursor: auto; }
+
+/* ---- testimonials carousel ---- */
+.testi__cards.is-carousel {
+  display: flex; grid-template-columns: none; gap: 26px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 4px; cursor: grab;
+  touch-action: pan-y;
+}
+.testi__cards.is-carousel::-webkit-scrollbar { display: none; }
+.testi__cards.is-carousel.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+.testi__cards.is-carousel > .quote-card {
+  scroll-snap-align: start; flex: 0 0 clamp(280px, 31.5%, 460px); min-height: 340px;
+}
+.carousel-ctrl { display: flex; align-items: center; gap: 16px; margin-top: 34px; }
+.carousel-dots { display: flex; align-items: center; gap: 8px; margin-right: auto; }
+.carousel-dots button {
+  width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+  background: var(--c-gray-200); transition: width .3s, background .3s, border-radius .3s;
+}
+.carousel-dots button.is-active { background: var(--c-accent); width: 26px; border-radius: 4px; }
+.carousel-arrow {
+  width: 48px; height: 48px; border-radius: 12px; cursor: pointer; display: grid; place-items: center;
+  border: 1px solid var(--c-gray-200); background: #fff; color: #26292d; font-size: 18px;
+  transition: background .25s, color .25s, border-color .25s, transform .35s;
+}
+.carousel-arrow:hover { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
+.carousel-arrow[disabled] { opacity: .4; cursor: default; }
+
+/* ---- marquee: pauza na hover ---- */
+.marquee:hover .marquee__track { animation-play-state: paused; }
+
+/* ---- extra headroom pro parallax pozadí (jen když běží anim) ---- */
+.has-anim .phero__bg,
+.has-anim .perf__bg,
+.has-anim .impact__bg { height: 122%; top: -11%; }
+.has-anim .case__hero img { height: 118%; }
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none; }
+  html.has-cursor, html.has-cursor * { cursor: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor-dot, .cursor-ring, .scroll-progress { display: none; }
+  .has-anim .phero__bg, .has-anim .perf__bg, .has-anim .impact__bg { height: 100%; top: 0; }
+  .has-anim .case__hero img { height: 100%; }
+}
