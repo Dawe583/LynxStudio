@@ -8,8 +8,10 @@
   "use strict";
 
   const root = document.documentElement;
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  /* Na výslovné přání: animace, efekty a přechody běží na VŠECH zařízeních
+     bez výjimky — ignorujeme prefers-reduced-motion i typ ukazatele (dotyk). */
+  const reduceMotion = false;
+  const canHover = true;
 
   /* screenshot helper: /?y=4000 skočí po načtení na danou pozici (bez Lenis/anim) */
   const qs = new URLSearchParams(location.search);

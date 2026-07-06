@@ -738,11 +738,8 @@ sup { font-size: .55em; margin-left: 2px; color: var(--c-text-mut); }
   .words__word { font-size: 15vw; }
 }
 
-/* reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .marquee__track, .process__blob { animation: none; }
-  * { transition-duration: 0.01ms !important; }
-}
+/* Pozn.: na přání klienta neomezujeme animace přes prefers-reduced-motion —
+   běží na všech zařízeních (viz motion layer níže). */
 
 /* ==========================================================================
    SUBPAGES — sdílené prvky (work, studio, whispers, contact, legal, 404)
@@ -1064,12 +1061,5 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select { cursor
 .has-anim .impact__bg { height: 122%; top: -11%; }
 .has-anim .case__hero img { height: 118%; }
 
-@media (hover: none), (pointer: coarse) {
-  .cursor-dot, .cursor-ring { display: none; }
-  html.has-cursor, html.has-cursor * { cursor: auto; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .cursor-dot, .cursor-ring, .scroll-progress { display: none; }
-  .has-anim .phero__bg, .has-anim .perf__bg, .has-anim .impact__bg { height: 100%; top: 0; }
-  .has-anim .case__hero img { height: 100%; }
-}
+/* Bez výjimek: kurzor, progress bar i parallax běží i na dotykových
+   zařízeních a při prefers-reduced-motion (na výslovné přání klienta). */
